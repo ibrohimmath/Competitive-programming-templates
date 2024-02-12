@@ -5,11 +5,10 @@ using namespace std;
 using ll = long long;
 using ld = long double;
 #define all(x) (x).begin(), (x).end()
-#define ieach(i, a) for (auto &i : a)
+#define ineach(i, a) for (auto &i : a)
 #define each(i, a) for (const auto &i : a)
 
 const int MOD = 1e9 + 7;
-const int N = 2e5 + 1;
 
 // #define TIME
 void solve() {
