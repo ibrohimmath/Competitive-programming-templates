@@ -5,8 +5,7 @@ using namespace std;
 using ll = long long;
 using ld = long double;
 #define all(x) (x).begin(), (x).end()
-#define ineach(i, a) for (auto &i : a)
-#define each(i, a) for (const auto &i : a)
+#define each(i, a) for (auto &i : a)
 
 const int MOD = 1e9 + 7;
 
