@@ -1,12 +1,13 @@
-// Fastpow
-ll binpow(ll a, ll n, ll mod = 1e9 + 7) {
+// MATH
+// Fast pow function
+int binpow(int a, int n, int mod = 1e9 + 7) {
     if (!a) {
         return 0;
     }
     if (!n) {
         return 1;
     }
-    ll res = 1;
+    int res = 1;
     
     while (n) {
         if (n & 1) res = res * a % mod;
@@ -17,29 +18,21 @@ ll binpow(ll a, ll n, ll mod = 1e9 + 7) {
     return res;
 }
 
-// Sieve prime
-vector<int> sieve(int n) {
-    vector<int> primes;
-    vector<char> tub(n, 1);
-    
-    for (int i = 2; i * i <= n; i++) {
-        if (tub[i]) {
+// Sieve prime function
+void eratosfen(int n) {
+    vector<bool> sieve(n + 1, true);
+
+    sieve[0] = sieve[1] = false;
+    for (int i = 2; i * i; i <= n) {
+        if (sieve[i]) {
             for (int j = i * i; j <= n; j += i) {
-                tub[j] = 0;
+                sieve[j] = false;
             }
         }
     }
-    
-    for (int i = 2; i <= n; i++) {
-        if (tub[i]) {
-            primes.push_back(i);
-        }
-    }
-    
-    return primes;
 }
 
-// BigInt
+// BigInt class
 struct Int{
     string s;
     Int() : s("0") {}
@@ -61,8 +54,8 @@ struct Int{
     Int operator+(const Int &obj){
         string a = s, b = obj.s;        
         int n = size(a), m = size(b);
-        reverse(all(a));
-        reverse(all(b));
+        reverse(aint(a));
+        reverse(aint(b));
         if(n < m) a += string(m - n, '0'), n = m;
         else b += string(n - m, '0'), m = n;
         string c = "";
@@ -74,15 +67,15 @@ struct Int{
             c += char(num + '0');
         }
         if(dilda) c += char(dilda + '0');
-        reverse(all(c));
+        reverse(aint(c));
         return Int(stripZeros(c));
     }
 
     Int operator-(const Int& obj){
         string a = s, b = obj.s;
         if(a == b) return Int("0");
-        reverse(all(a));
-        reverse(all(b));
+        reverse(aint(a));
+        reverse(aint(b));
         string c = "";
         int n = a.size(), m = b.size();
         if(n < m) a += string(m - n, '0'), n = m;
@@ -96,14 +89,14 @@ struct Int{
             }else dilda = 0;
             c += char(num + '0');
         }
-        reverse(all(c));
+        reverse(aint(c));
         return Int(stripZeros(c));
     }
 
     Int operator*(const Int &obj){
         string a = s, b = obj.s;
-        reverse(all(a));
-        reverse(all(b));
+        reverse(aint(a));
+        reverse(aint(b));
         int n = size(a), m = size(b);
         vector<int>ans(n + m, 0);
         for(int i = 0; i < n; i++){
@@ -119,14 +112,14 @@ struct Int{
             dilda = num / 10;
         }
         if(dilda) c += dilda;
-        reverse(all(c));
+        reverse(aint(c));
         return Int(stripZeros(c));
     }
 
     Int operator/(const int &n){
         s = stripZeros(s);
         string ans = "";
-        ll num = 0;
+        int num = 0;
         for(int i = 0; i < size(s); i++){
             num = 10 * num + s[i] - '0';
             ans += char(num / n + '0');
