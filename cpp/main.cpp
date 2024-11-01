@@ -12,13 +12,13 @@ using ld = long double;
 // Random <= 1e9
 mt19937 mt(time(nullptr));
 
-int random() {
+int getRand() {
     return mt();
 }
 
 // #define TIME
 void solve(int &t) {
-
+    cout << "Hello world";
 }
 
 // #define TESTCASES
