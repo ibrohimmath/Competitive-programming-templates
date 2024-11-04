@@ -1,13 +1,21 @@
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
-#include <bits/stdc++.h>
+
+#include "io.hpp"
+#include "debug.hpp"
+#include "bits/stdc++.h"
+
 using namespace std;
 using ll = long long;
 using ld = long double;
+
 #define each(i, a) for (auto &i : a)
 #define all(x) (x).begin(), (x).end()
 #define cmin(a, b) a = min(a, b)
 #define cmax(a, b) a = max(a, b)
+
+// #define TESTCASES
+// #define FILES
 
 // Random <= 1e9
 mt19937 mt(time(nullptr));
@@ -16,13 +24,13 @@ int getRand() {
     return mt();
 }
 
-// #define TIME
 void solve(int &t) {
     cout << "Hello world";
+    vector<int> a(5);
+    cin >> a;
+    debug(a);
 }
 
-// #define TESTCASES
-// #define FILES
 int32_t main(void) {
     cin.tie(0)->sync_with_stdio(0);
     int t = 1;
