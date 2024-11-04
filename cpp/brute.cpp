@@ -17,26 +17,50 @@ using ld = long double;
 // #define FILES
 
 // Random <= 1e9
-mt19937 mt(time(nullptr));
+auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
+mt19937 mt(seed);
 
 int getRand() {
     return mt();
 }
 
 void solve(int &t) {
-    int n;
-    cin >> n;
+    int m, k, n;
+    cin >> m >> k >> n;
 
-    vector<int> a(n);
-    cin >> a;
-
-    int mn = INT_MAX, mx = INT_MIN;
+    vector<int> a(n), counter(1e6);
     each(i, a) {
-      mn = min(mn, i);
-      mx = max(mx, i);
+        cin >> i;
+        counter[i]++;
     }
 
-    cout << mn << ' ' << mx;
+    set<int> st;
+    int ans = 0;
+    each(x, a) {
+        counter[x]--;
+        if (st.size() && st.find(x) != st.end()) {
+            continue;
+        } else if (st.size() < k) {
+            st.insert(x);
+            ans++;
+        } else {
+            int mn = -1;
+            each(item, st) {
+                if (x == -1) {
+                    x = item;
+                    continue;
+                } else if (counter[item] < counter[mn]) {
+                    mn = item;
+                }
+            }
+            if (mn != -1) {
+                st.erase(mn);
+                ans++;
+            }
+        }
+    }
+
+    cout << ans;
 }
 
 int32_t main(void) {

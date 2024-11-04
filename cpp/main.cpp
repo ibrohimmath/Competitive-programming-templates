@@ -18,20 +18,95 @@ using ld = long double;
 // #define FILES
 
 // Random <= 1e9
-mt19937 mt(time(nullptr));
+auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
+mt19937 mt(seed);
 
 int getRand() {
     return mt();
 }
 
+int n, k, m;
+vector<int> a;
+vector<int> counter(1e6);
+// Maydondagi avtomatlar
+set<int> st;
+// prioritetga tushunvchi avtomatlar to'plami
+map< int, set<int> > mp;
+
+bool has(set<int> &st, int x) {
+    if (st.find(x) != st.end()) {
+        return true;
+    }
+    return false;
+}
+
+void decreaseOccurence(int x) {
+    int prevTimes = counter[x];
+    if (has(mp[prevTimes], x)) {
+        mp[prevTimes].erase(x);
+    }
+    if (!mp[prevTimes].size()) {
+        mp.erase(mp.find(prevTimes));
+    }
+
+    if (prevTimes > 0) {
+        int currTimes = --counter[x];
+        mp[currTimes].insert(x);
+        st.insert(x);
+    }
+}
+
+void eliminate() {
+    while (!(mp.begin()->second).size()) {
+        mp.erase(mp.begin());
+    }
+    each(item, (mp.begin()->second)) {
+        if (has(st, item)) {
+            st.erase(item);
+            (mp.begin()->second).erase(item);
+            return;
+        }
+    }
+    if (!(mp.begin()->second).size()) {
+        mp.erase(mp.begin());
+    }
+}
+
+void outputMap() {
+    for (auto [key, sett] : mp) {
+        cout << key << " -> ";
+        each(item, sett) cout << item << ' ';
+        cout << "\n";
+    }
+    cout << "------\n";
+}
+
+// #define TIME
 void solve(int &t) {
-    int n;
-    cin >> n;
+    cin >> n >> k >> m;
 
-    vector<int> a(n);
-    cin >> a;
+    a.resize(m);
+    each(i, a) {
+        cin >> i;
+        counter[i]++;
+    }
 
-    cout << *min_element(all(a)) << ' ' << *max_element(all(a));
+    int ans = 0;
+    each(item, a) {
+        if (has(st, item)) {
+            decreaseOccurence(item);
+        } else if (st.size() < k) {
+            decreaseOccurence(item);
+            ans++;
+        } else {
+            decreaseOccurence(item);
+            eliminate();
+            ans++;
+        }
+        // outputMap();
+    }    
+
+    cout << ans;
 }
 
 int32_t main(void) {

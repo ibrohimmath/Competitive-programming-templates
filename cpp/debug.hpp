@@ -36,4 +36,4 @@ inline void _print(T t, V... v) {
 
 #define debug(x...) cerr << "[" << #x << "] = ["; _print(x);
 
-#endif // DEBUG_H
+#endif

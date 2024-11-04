@@ -16,7 +16,8 @@ using ld = long double;
 // #define FILES
 
 // Random <= 1e9
-mt19937 mt(time(nullptr));
+auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
+mt19937 mt(seed);
 
 int getRand() {
   return abs(int(mt()));
@@ -27,16 +28,19 @@ int rand(int a, int b) {
 }
 
 void gen_array(int a, int b, int n) {
-    cout << n << "\n";
+    // cout << n << "\n";
     for (int i = 0; i < n; i++) {
         cout << rand(a, b) << " ";
     }
 }
 
 void solve(int &t) {
-    int a = rand(0, 100), b = rand(a, 1000), n = rand(1, 20);
-    // cout << a << ' ' << b << ' ' << n << "\n";
-    gen_array(a, b, n);
+    int m, k, n;
+    n = rand(1, 50);
+    k = rand(1, 10);
+    m = rand(1, 10);
+    cout << m << ' ' << k << ' ' << n << "\n";
+    gen_array(1, m, n);
 }
 
 int32_t main(void) {

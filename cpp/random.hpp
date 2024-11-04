@@ -1,6 +1,9 @@
 // RANDOM
 // Random <= 1e9
-mt19937 mt(time(nullptr));
+
+auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
+mt19937 mt(seed);
+
 
 int random() {
     return mt();
