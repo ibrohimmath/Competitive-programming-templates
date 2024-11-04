@@ -1,6 +1,8 @@
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
 
+#include "io.hpp"
+// #include "debug.hpp"
 #include "bits/stdc++.h"
 
 using namespace std;
@@ -21,27 +23,11 @@ auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
 mt19937 mt(seed);
 
 int getRand() {
-  return abs(int(mt()));
-}
-
-int rand(int a, int b) {
-  return a + getRand() % (b - a + 1);
-}
-
-void gen_array(int a, int b, int n) {
-    // cout << n << "\n";
-    for (int i = 0; i < n; i++) {
-        cout << rand(a, b) << " ";
-    }
+    return mt();
 }
 
 void solve(int &t) {
-    int m, k, n;
-    n = rand(1, 500);
-    k = rand(1, 100);
-    m = rand(1, 100);
-    cout << m << ' ' << k << ' ' << n << "\n";
-    gen_array(1, m, n);
+
 }
 
 int32_t main(void) {
@@ -56,7 +42,6 @@ int32_t main(void) {
 
     #ifdef TESTCASES
         cin >> t;
-        cout << t << "\n";
     #endif
 
     for (int i = 1; i <= t; i++) {

@@ -2,6 +2,7 @@
 #pragma GCC optimize("unroll-loops")
 
 #include "io.hpp"
+#include "debug.hpp"
 #include "bits/stdc++.h"
 
 using namespace std;
@@ -15,6 +16,7 @@ using ld = long double;
 
 // #define TESTCASES
 // #define FILES
+// #define TIME
 
 // Random <= 1e9
 auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
@@ -24,42 +26,79 @@ int getRand() {
     return mt();
 }
 
+void output(int m, vector<int> counter) {
+    for (int i = 1; i <= m; i++) {
+        cout << i << ' ' << counter[i] << "\n";
+    }
+}
+
 void solve(int &t) {
     int m, k, n;
     cin >> m >> k >> n;
-
-    vector<int> a(n), counter(1e6);
-    each(i, a) {
-        cin >> i;
-        counter[i]++;
+    
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
     }
-
-    set<int> st;
+    
+    // Track current weapons on ranges
+    set<int> ranges;
+    // Track next occurrence and count of remaining uses
+    vector<int> next(m + 1, n);
+    vector<int> remaining(m + 1, 0);
+    
+    // Calculate remaining uses for each weapon
+    for (int i = 0; i < n; i++) {
+        remaining[a[i]]++;
+    }
+    
     int ans = 0;
-    each(x, a) {
-        counter[x]--;
-        if (st.size() && st.find(x) != st.end()) {
-            continue;
-        } else if (st.size() < k) {
-            st.insert(x);
-            ans++;
-        } else {
-            int mn = -1;
-            each(item, st) {
-                if (x == -1) {
-                    x = item;
-                    continue;
-                } else if (counter[item] < counter[mn]) {
-                    mn = item;
-                }
-            }
-            if (mn != -1) {
-                st.erase(mn);
-                ans++;
+    
+    for (int i = 0; i < n; i++) {
+        // Update next occurrence for each weapon
+        for (int j = i; j < n; j++) {
+            if (next[a[j]] == n) {
+                next[a[j]] = j;
             }
         }
+        
+        int curr = a[i];
+        remaining[curr]--;
+        
+        if (ranges.count(curr)) continue;
+        
+        if (ranges.size() < k) {
+            ranges.insert(curr);
+            ans++;
+            continue;
+        }
+        
+        // Need to make a swap - find best weapon to remove
+        int to_remove = -1;
+        int worst_score = -1;
+        
+        for (int weapon : ranges) {
+            // Score based on next occurrence and remaining uses
+            int score = next[weapon] * n + remaining[weapon];
+            if (score > worst_score) {
+                worst_score = score;
+                to_remove = weapon;
+            }
+        }
+        
+        if (to_remove != -1 && 
+            (next[to_remove] > i || remaining[to_remove] == 0)) {
+            ranges.erase(to_remove);
+            ranges.insert(curr);
+            ans++;
+        }
+        
+        // Reset next positions
+        for (int j = 1; j <= m; j++) {
+            next[j] = n;
+        }
     }
-
+    
     cout << ans;
 }
 

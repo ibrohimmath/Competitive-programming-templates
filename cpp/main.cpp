@@ -16,6 +16,7 @@ using ld = long double;
 
 // #define TESTCASES
 // #define FILES
+// #define TIME
 
 // Random <= 1e9
 auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
@@ -27,7 +28,7 @@ int getRand() {
 
 int n, k, m;
 vector<int> a;
-vector<int> counter(1e6);
+vector<int> counter;
 // Maydondagi avtomatlar
 set<int> st;
 // prioritetga tushunvchi avtomatlar to'plami
@@ -81,11 +82,11 @@ void outputMap() {
     cout << "------\n";
 }
 
-// #define TIME
 void solve(int &t) {
-    cin >> n >> k >> m;
+    cin >> m >> k >> n;
 
-    a.resize(m);
+    a.resize(n);
+    counter.resize(m + 1);
     each(i, a) {
         cin >> i;
         counter[i]++;
