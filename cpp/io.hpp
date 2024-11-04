@@ -19,4 +19,4 @@ ostream& operator<< (ostream& out, const vector<T>& a) {
     return out;
 }
 
-#endif // IO_H
+#endif

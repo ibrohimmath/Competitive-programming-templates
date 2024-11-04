@@ -2,7 +2,6 @@
 #pragma GCC optimize("unroll-loops")
 
 #include "io.hpp"
-// #include "debug.hpp"
 #include "bits/stdc++.h"
 
 using namespace std;
@@ -31,7 +30,13 @@ void solve(int &t) {
     vector<int> a(n);
     cin >> a;
 
-    cout << *min_element(all(a)) << ' ' << *max_element(all(a));
+    int mn = INT_MAX, mx = INT_MIN;
+    each(i, a) {
+      mn = min(mn, i);
+      mx = max(mx, i);
+    }
+
+    cout << mn << ' ' << mx;
 }
 
 int32_t main(void) {

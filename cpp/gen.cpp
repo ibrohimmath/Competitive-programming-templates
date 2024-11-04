@@ -1,8 +1,6 @@
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
 
-#include "io.hpp"
-// #include "debug.hpp"
 #include "bits/stdc++.h"
 
 using namespace std;
@@ -21,17 +19,24 @@ using ld = long double;
 mt19937 mt(time(nullptr));
 
 int getRand() {
-    return mt();
+  return abs(int(mt()));
+}
+
+int rand(int a, int b) {
+  return a + getRand() % (b - a + 1);
+}
+
+void gen_array(int a, int b, int n) {
+    cout << n << "\n";
+    for (int i = 0; i < n; i++) {
+        cout << rand(a, b) << " ";
+    }
 }
 
 void solve(int &t) {
-    int n;
-    cin >> n;
-
-    vector<int> a(n);
-    cin >> a;
-
-    cout << *min_element(all(a)) << ' ' << *max_element(all(a));
+    int a = rand(0, 100), b = rand(a, 1000), n = rand(1, 20);
+    // cout << a << ' ' << b << ' ' << n << "\n";
+    gen_array(a, b, n);
 }
 
 int32_t main(void) {
@@ -46,6 +51,7 @@ int32_t main(void) {
 
     #ifdef TESTCASES
         cin >> t;
+        cout << t << "\n";
     #endif
 
     for (int i = 1; i <= t; i++) {
