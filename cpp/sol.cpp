@@ -1,18 +1,18 @@
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
-
-#include "io.hpp"
-// #include "debug.hpp"
 #include "bits/stdc++.h"
-
 using namespace std;
 using ll = long long;
 using ld = long double;
-
 #define each(i, a) for (auto &i : a)
 #define all(x) (x).begin(), (x).end()
 #define cmin(a, b) a = min(a, b)
 #define cmax(a, b) a = max(a, b)
+
+#ifndef ONLINE_JUDGE
+    #include "io.hpp"
+    #include "debug.hpp"
+#endif
 
 // #define TESTCASES
 // #define FILES
@@ -27,7 +27,6 @@ int getRand() {
 }
 
 void solve(int &t) {
-
 }
 
 int32_t main(void) {

@@ -1,16 +1,18 @@
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize("unroll-loops")
-
 #include "bits/stdc++.h"
-
 using namespace std;
 using ll = long long;
 using ld = long double;
-
 #define each(i, a) for (auto &i : a)
 #define all(x) (x).begin(), (x).end()
 #define cmin(a, b) a = min(a, b)
 #define cmax(a, b) a = max(a, b)
+
+#ifndef ONLINE_JUDGE
+    #include "io.hpp"
+    #include "debug.hpp"
+#endif
 
 // #define TESTCASES
 // #define FILES
@@ -21,7 +23,7 @@ auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
 mt19937 mt(seed);
 
 int getRand() {
-  return abs(int(mt()));
+    return mt();
 }
 
 int rand(int a, int b) {
