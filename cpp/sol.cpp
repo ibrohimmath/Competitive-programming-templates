@@ -14,6 +14,7 @@ using ld = long double;
     #include "debug.hpp"
 #endif
 
+// #define READ_MAIN
 // #define TESTCASES
 // #define FILES
 // #define TIME
@@ -26,7 +27,12 @@ int getRand() {
     return mt();
 }
 
+void readMain() {
+
+}
+
 void solve(int &t) {
+    cout << "Hello world";
 }
 
 int32_t main(void) {
@@ -41,6 +47,10 @@ int32_t main(void) {
 
     #ifdef TESTCASES
         cin >> t;
+    #endif
+
+    #ifdef READ_MAIN
+        readMain();
     #endif
 
     for (int i = 1; i <= t; i++) {
