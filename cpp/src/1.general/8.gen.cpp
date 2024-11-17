@@ -9,30 +9,35 @@ using ld = long double;
 #define cmin(a, b) a = min(a, b)
 #define cmax(a, b) a = max(a, b)
 
-#ifndef ONLINE_JUDGE
-    #include "io.hpp"
-    #include "debug.hpp"
-#endif
+// #ifndef ONLINE_JUDGE
+//     #include "debug.hpp"
+// #endif
 
-// #define READ_MAIN
-// #define TESTCASES
-// #define FILES
-// #define TIME
+mt19937 mt(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-// Random <= 1e9
-auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
-mt19937 mt(seed);
+int rand(int a, int b) {
+  return a + getRand() % (b - a + 1);
+}
+
+void gen_array(int a, int b, int n) {
+    // cout << n << "\n";
+    for (int i = 0; i < n; i++) {
+        cout << rand(a, b) << " ";
+    }
+}
 
 int getRand() {
     return mt();
 }
 
-void readMain() {
+void readMain() {}
 
-}
-
+// #define READ_MAIN
+// #define TESTCASES
+// #define FILES
+// #define TIME
 void solve(int &t) {
-    cout << "Hello world";
+
 }
 
 int32_t main(void) {
@@ -45,12 +50,12 @@ int32_t main(void) {
         freopen("output.txt", "w", stdout);
     #endif
 
-    #ifdef TESTCASES
-        cin >> t;
-    #endif
-
     #ifdef READ_MAIN
         readMain();
+    #endif
+
+    #ifdef TESTCASES
+        cin >> t;
     #endif
 
     for (int i = 1; i <= t; i++) {

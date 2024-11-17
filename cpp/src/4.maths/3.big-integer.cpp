@@ -1,38 +1,3 @@
-// MATH
-// Fast pow function
-int binpow(int a, int n, int mod = 1e9 + 7) {
-    if (!a) {
-        return 0;
-    }
-    if (!n) {
-        return 1;
-    }
-    int res = 1;
-    
-    while (n) {
-        if (n & 1) res = res * a % mod;
-        n >>= 1;
-        a = a * a % mod;
-    }
-    
-    return res;
-}
-
-// Sieve prime function
-void eratosfen(int n) {
-    vector<bool> sieve(n + 1, true);
-
-    sieve[0] = sieve[1] = false;
-    for (int i = 2; i * i; i <= n) {
-        if (sieve[i]) {
-            for (int j = i * i; j <= n; j += i) {
-                sieve[j] = false;
-            }
-        }
-    }
-}
-
-// BigInt class
 struct Int{
     string s;
     Int() : s("0") {}
@@ -152,4 +117,3 @@ ostream& operator<< (ostream& out, const Int& obj){
     out << obj.s;
     return out;
 }
-

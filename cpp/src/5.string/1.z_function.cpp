@@ -1,5 +1,3 @@
-// STRING
-// Z function
 void z_function(string &s) {
   int n = s.size();
   vector<int> z(n);
@@ -18,21 +16,5 @@ void z_function(string &s) {
       l = i;
       r = i + z[i];
     }
-  }
-}
-
-// Prefix function
-void prefix_function(string &s) {
-  int n = s.size();
-  vector<int> pi(n);
-  for (int i = 1; i < n; i++) {
-    int j = pi[i - 1];
-    while (j > 0 && s[i] != s[j]) {
-      j = pi[j - 1];
-    }
-    if (s[i] == s[j]) {
-      j++;
-    }
-    pi[i] = j;
   }
 }

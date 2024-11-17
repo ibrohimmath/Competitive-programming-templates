@@ -1,7 +1,3 @@
-bash compileCpp.sh gen
-bash compileCpp.sh main
-bash compileCpp.sh brute
-
 for ((i = 1; i <= 5; i++)); do
   echo "Checking test #$i"
   ./gen > input
