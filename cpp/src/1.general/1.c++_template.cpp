@@ -13,40 +13,21 @@ using ld = long double;
 //     #include "debug.hpp"
 // #endif
 
-<<<<<<< HEAD:cpp/sol.cpp
-// #define READ_MAIN
-// #define TESTCASES
-// #define FILES
-// #define TIME
-
 // Random <= 1e9
-auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
-mt19937 mt(seed);
-=======
 mt19937 mt(chrono::high_resolution_clock::now().time_since_epoch().count());
->>>>>>> 9ee80bd (TRD changed):cpp/src/1.general/1.c++_template.cpp
 
 int getRand() {
     return mt();
 }
 
-<<<<<<< HEAD:cpp/sol.cpp
-void readMain() {
-
-}
-
-void solve(int &t) {
-    cout << "Hello world";
-=======
 void readMain() {}
 
 // #define READ_MAIN
-// #define TESTCASES
 // #define FILES
 // #define TIME
+// #define TESTCASES
 void solve(int &t) {
 
->>>>>>> 9ee80bd (TRD changed):cpp/src/1.general/1.c++_template.cpp
 }
 
 int32_t main(void) {
