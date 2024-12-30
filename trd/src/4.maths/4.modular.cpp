@@ -15,3 +15,7 @@ int binpow(int a, int n, int mod = 1e9 + 7) {
     
     return res;
 }
+
+int inverse(int x, int mod = 1e9 + 7) {
+    return binpow(x, mod - 2);
+}
