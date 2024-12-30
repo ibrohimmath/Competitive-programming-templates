@@ -14,16 +14,27 @@ using ld = long double;
 mt19937 mt(chrono::high_resolution_clock::now().time_since_epoch().count());
 
 void readMain() {}
-
 // #define READ_MAIN
 // #define FILES
-#define TESTCASES
+// #define TESTCASES
 void solve(int &t) {
+    int n;
+    cin >> n;
 
+    vector<int> a(n);   
+    rep(i, 0, n) {
+        cin >> a[i];
+    }
+
+    sort(all(a));
+
+    rep(i, 0, n) {
+        
+    }
 }
 
 int32_t main() {
-    // cin.tie(0)->sync_with_stdio(0);
+    cin.tie(0)->sync_with_stdio(0);
 
     #ifdef FILES
         freopen("input.txt", "r", stdin);
