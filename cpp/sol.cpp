@@ -4,10 +4,6 @@ using ll = long long;
 using ld = long double;
 #define each(i, a) for (auto &i : a)
 #define all(x) (x).begin(), (x).end()
-#define rep(i, a, b) for (int i = (a); i < (b); i++)
-#define repr(i, b, a) for (int i = (b); i > (a); i--)
-#define cmin(a, b) a = min(a, b)
-#define cmax(a, b) a = max(a, b)
 #define debug(x) cout << #x << ' ' << x << "\n";
 #define sz(a) (int)((a).size())
 
