@@ -1,5 +1,3 @@
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize("unroll-loops")
 #include "bits/stdc++.h"
 using namespace std;
 using ll = long long;
@@ -10,6 +8,8 @@ using ld = long double;
 #define repr(i, b, a) for (int i = (b); i > (a); i--)
 #define cmin(a, b) a = min(a, b)
 #define cmax(a, b) a = max(a, b)
+#define debug(x) cout << #x << ' ' << x << "\n";
+#define sz(a) (int)((a).size())
 
 mt19937 mt(chrono::high_resolution_clock::now().time_since_epoch().count());
 
@@ -30,13 +30,6 @@ int32_t main() {
     #endif
 
     int t = 1;
-    #ifdef TESTCASES
-        cin >> t;
-    #endif 
-
-    #ifdef READ_MAIN
-        readMain();
-    #endif
 
     for (int i = 1; i <= t; i++) {
         solve(i);
