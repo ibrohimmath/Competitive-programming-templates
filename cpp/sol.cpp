@@ -2,19 +2,28 @@
 using namespace std;
 using ll = long long;
 using ld = long double;
-#define each(i, a) for (auto &i : a)
 #define all(x) (x).begin(), (x).end()
-#define debug(x) cout << #x << ' ' << x << "\n";
 #define sz(a) (int)((a).size())
+#define debug(x) cout << #x << ' ' << x << "\n";
+#define each(i, a) for (auto &i : a)
+#define FOR(i, a, b) for (int i = (a); i != (b); i += 2 * ((a) <= (b)) - 1)
 
 mt19937 mt(chrono::high_resolution_clock::now().time_since_epoch().count());
 
-void readMain() {
+template <typename... Args>
+void print(Args... args) {
+    ((cout << args << ' '), ...) << '\n';
 }
+
+
 // #define READ_MAIN
 // #define FILES
 // #define TESTCASES
+void readMain() {
+}
+
 void solve(int &t) {
+    
 }
 
 int32_t main() {
