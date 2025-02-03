@@ -15,15 +15,10 @@ void print(Args... args) {
     ((cout << args << ' '), ...) << '\n';
 }
 
-
-// #define READ_MAIN
 // #define FILES
 // #define TESTCASES
-void readMain() {
-}
-
 void solve(int &t) {
-    
+
 }
 
 int32_t main() {
@@ -35,6 +30,9 @@ int32_t main() {
     #endif
 
     int t = 1;
+    #ifdef TESTCASES
+        cin >> t;
+    #endif
 
     for (int i = 1; i <= t; i++) {
         solve(i);
