@@ -1,41 +1,40 @@
 struct SegmentTree {
     int n;
-    vector<ll> t;
-    const ll IDENTITY = 0; // OO for min, -OO for max, ...
-    ll f(ll a, ll b) {
-        return a+b;
-    }
-    SegmentTree(int _n) {
-        n = _n; t = vector<ll>(4*n, IDENTITY);
-    }
-    SegmentTree(vector<ll>& arr) {
-        n = arr.size(); t = vector<ll>(4*n, IDENTITY);
-        build(arr, 1, 0, n-1);
-    }
-    void build(vector<ll>& arr, int v, int tl, int tr) {
-        if(tl == tr) { t[v] = arr[tl]; }
-        else {
-            int tm = (tl+tr)/2;
-            build(arr, 2*v, tl, tm);
-            build(arr, 2*v+1, tm+1, tr);
-            t[v] = f(t[2*v], t[2*v+1]);
+    vector<int> tree;
+
+    SegmentTree(int n, const vector<int> &a) : n(n) {
+        tree.assign(4 * n, 0);
+        for (int i = 0; i < n; i++) {
+            update(1, 0, n - 1, i, a[i]);
         }
     }
-    // sum(1, 0, n-1, l, r)
-    ll sum(int v, int tl, int tr, int l, int r) {
-        if(l > r) return IDENTITY;
-        if (l == tl && r == tr) return t[v];
-        int tm = (tl+tr)/2;
-        return f(sum(2*v, tl, tm, l, min(r, tm)), sum(2*v+1, tm+1, tr, max(l, tm+1), r));
+
+    int combine(int x, int y) {
+        return x + y;
     }
-    // update(1, 0, n-1, i, v)
-    void update(int v, int tl, int tr, int pos, ll newVal) {
-        if(tl == tr) { t[v] = newVal; }
-        else {
-            int tm = (tl+tr)/2;
-            if(pos <= tm) update(2*v, tl, tm, pos, newVal);
-            else update(2*v+1, tm+1, tr, pos, newVal);
-            t[v] = f(t[2*v],t[2*v+1]);
+
+    int update(int id, int s, int e, int pos, int val) {
+        if (s == e) {
+            return tree[id] = combine(tree[id], val);
         }
+        int mid = (s + e) >> 1;
+        if (pos <= mid) {
+            update(id << 1, s, mid, pos, val);
+        } else {
+            update(id << 1 | 1, mid + 1, e, pos, val);
+        }
+        return tree[id] = combine(tree[id << 1], tree[id << 1 | 1]);
+    }
+
+    int query(int id, int s, int e, int lq, int rq) {
+        if (rq < s || lq > e) {
+            return 0;
+        }
+        if (lq <= s && e <= rq) {
+            return tree[id];
+        }
+        int mid = (s + e) >> 1;
+        return combine(query(id << 1, s, mid, lq, rq),
+               query(id << 1 | 1, mid + 1, e, lq, rq));
     }
 };
