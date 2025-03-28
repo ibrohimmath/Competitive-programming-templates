@@ -2,7 +2,10 @@
     "files.associations": {
         "tuple": "cpp",
         "random": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "iostream": "cpp",
+        "cmath": "cpp",
+        "iomanip": "cpp"
     },
     "workbench.colorCustomizations": {
         "iLoveWorkSpaceColors": true,
