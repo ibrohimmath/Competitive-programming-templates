@@ -14,33 +14,21 @@ void out(Args... args) {
     ((cout << args << ' '), ...) << '\n';
 }
 
-void leetcode() {
-
+// #define LEETCODE
+void leet() {
 }
 
 // #define FILES
 // #define TESTCASES
-// #define LEETCODE
 void solve(int &t) {
-    int n; cin >> n;
 
-    vector<int> a(n + 1); 
-    for (int i = 1; i <= n; i++) cin >> a[i];
-
-    vector<vector<int>> dp(n + 1, vector<int>(n + 1));
-    dp[0][0] = 0;
-    for (int i = 1; i <= n; i++) {
-        for (int c = 1; c <= n; c++) {
-            
-        }
-    }
 }
 
 int32_t main() {
-    cin.tie(0)->sync_with_stdio(0);
+    // cin.tie(0)->sync_with_stdio(0);
 
     #ifdef LEETCODE
-        leetcode();
+        leet();
     #endif
 
     #ifdef FILES
