@@ -23,12 +23,12 @@ namespace IO {
     }
 
     template <typename... Args>
-    void read(Args&... args) {
+    void readln(Args&... args) {
         ((std::cin >> args), ...);
     }
     
     template <typename... Args>
-    void writeln(Args... args) {
+    void println(Args... args) {
         ((std::cout << args << ' '), ...);
         std::cout << '\n';
     }
@@ -36,6 +36,7 @@ namespace IO {
 
 // ##################################################################################################################
 // CONSTANTS
+constexpr const int MOD = 1e9 + 7;
 
 // ##################################################################################################################
 // OTHER
@@ -52,10 +53,86 @@ void leet() {
 // ##################################################################################################################
 // SOLUTION
 
+struct StringCalc {
+    stack<int> nums; 
+    stack<char> ops;
+
+    StringCalc() {}
+    
+    bool is_number(char c) {
+        return '0' <= c && c <= '9';
+    }
+
+    bool is_op(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+
+    int prior(char c) {
+        if (c == '+' || c == '-') return 1;
+        if (c == '*' || c == '/') return 2;
+        return 0;
+    }
+
+    int apply(char op) {
+        int b = nums.top(); nums.pop();
+        int a = nums.top(); nums.pop();
+
+        if (op == '+') return a + b;
+        if (op == '-') return a - b;
+        if (op == '*') return a * b;
+        if (op == '/') return a / b;
+        return 0;
+    }
+
+    int calculate(string express) {
+        for (int i = 0; i < express.size(); i++) {
+            if (is_number(express[i])) {
+                int num = 0;
+                
+                int j = i;
+                while (j < express.size() && is_number(express[j])) {
+                    num = num * 10 + (express[j] - '0');
+                    // println(express[j]);
+                    j++;
+                }
+
+                nums.push(num);
+                
+                if (j > i) i = j - 1;
+            } else if (express[i] == '(') {
+                ops.push(express[i]);
+            } else if (is_op(express[i])) {
+                println(express[i]);
+                while (sz(ops) > 0 && prior(ops.top()) >= prior(express[i])) {
+                    int calc_num = apply(ops.top()); ops.pop();
+                    nums.push(calc_num);
+                }
+                ops.push(express[i]);
+            } else {
+                while (sz(ops) > 0 && ops.top() != '(') {
+                    int calc_num = apply(ops.top()); ops.pop();
+                    nums.push(calc_num);
+                }
+                if (sz(ops) > 0)
+                    ops.pop();
+            }
+        }
+        
+        while (sz(ops) > 0) {
+            int calc_num = apply(ops.top()); ops.pop();
+            nums.push(calc_num);
+        }
+        
+        return nums.top();
+    }
+};
+
+
 // #define FILES
 // #define TESTCASES
 void solve(int &t) {
-
+    StringCalc calc;
+    println(calc.calculate("(1+2*3)*3"));
 }
 
 int32_t main() {
