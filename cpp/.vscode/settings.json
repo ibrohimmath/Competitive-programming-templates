@@ -33,7 +33,12 @@
         "streambuf": "cpp",
         "type_traits": "cpp",
         "typeindex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "string_view": "cpp",
+        "ranges": "cpp",
+        "span": "cpp",
+        "stacktrace": "cpp",
+        "regex": "cpp"
     },
     "workbench.colorCustomizations": {
         "iLoveWorkSpaceColors": true,
