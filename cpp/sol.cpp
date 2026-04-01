@@ -23,15 +23,21 @@ namespace IO {
         }
     }
 
+    template <typename T>
+    T read() {
+        T x;
+        std::cin >> x;
+        return x;
+    }
+
     template <typename... Args>
     void readln(Args&... args) {
         ((std::cin >> args), ...);
     }
-    
+
     template <typename... Args>
     void println(Args... args) {
-        ((std::cout << args << ' '), ...);
-        std::cout << '\n';
+        ((std::cout << args << ' '), ...) << '\n';
     }
 }
 
@@ -43,19 +49,16 @@ constexpr const int MOD = 1e9 + 7;
 // OTHER
 using namespace IO;
 
+// Read array compatible with C++ versions before C++20 
+// generate(all(a), read<int>); 
+
 // ########################################################################;##########################################
 // LEETCDODE
 
-// #define LEETCODE
+
+#define LEETCODE
 void leet() {
-    // int n, k;
-    // readln(n, k);
-
-    // vector<int> a(n);
-    // each(item, a) readln(item);
-
     // Solution sol;
-    // sol.minInversionCount(a, k);
 }
 
 // ##################################################################################################################
@@ -66,6 +69,7 @@ void leet() {
 // #define FILES
 // #define TESTCASES
 void solve(int &t) {
+
 }
 
 int32_t main() {
@@ -87,7 +91,7 @@ int32_t main() {
 
     for (int i = 1; i <= t; i++) {
         solve(i);
-        // std::cout << "\n";
+        std::cout << "\n";
     }
 
     return 0;
