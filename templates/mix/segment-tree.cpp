@@ -9,32 +9,29 @@ struct SegmentTree {
         }
     }
 
-    int combine(int x, int y) {
-        return x + y;
-    }
-
-    int update(int id, int s, int e, int pos, int val) {
-        if (s == e) {
+    int update(int id, int l, int r, int pos, int val) {
+        if (l == r)
             return tree[id] = combine(tree[id], val);
-        }
-        int mid = (s + e) >> 1;
+
+        int mid = (l + r) >> 1;
         if (pos <= mid) {
-            update(id << 1, s, mid, pos, val);
+            update(id << 1, l, mid, pos, val);
         } else {
-            update(id << 1 | 1, mid + 1, e, pos, val);
+            update(id << 1 | 1, mid + 1, r, pos, val);
         }
-        return tree[id] = combine(tree[id << 1], tree[id << 1 | 1]);
+
+        return tree[id] = tree[id << 1] + tree[id << 1 | 1];
     }
 
-    int query(int id, int s, int e, int lq, int rq) {
-        if (rq < s || lq > e) {
+    int query(int id, int l, int r, int ql, int qr) {
+        if (qr < l || ql > r)
             return 0;
-        }
-        if (lq <= s && e <= rq) {
+
+        if (ql <= l && r <= qr)
             return tree[id];
-        }
-        int mid = (s + e) >> 1;
-        return combine(query(id << 1, s, mid, lq, rq),
-               query(id << 1 | 1, mid + 1, e, lq, rq));
+
+        int mid = (l + r) >> 1;
+
+        return query(id << 1, l, mid, ql, qr) + query(id << 1 | 1, mid + 1, r, ql, qr);
     }
 };

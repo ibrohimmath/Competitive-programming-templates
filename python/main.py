@@ -1,46 +1,74 @@
 import sys
-from typing import List
-import heapq
-# sys.setrecursionlimit(100000)
+# sys.setrecursionlimit(1000000)
 
-# from bisect import bisect_right
-# from math import ceil, floor, log10, log2
+from datetime import date, datetime
+from typing import Callable
+# from typing import List
+
+from math import ceil, floor, trunc, log10, log2
+from functools import lru_cache, reduce, cmp_to_key
+
+# from bisect import bisect_left, bisect_right
+# import heapq
+
+##################################################################################################
+# Input/Output
 
 inputln = sys.stdin.readline
 def println(*args, sep=' ', end='\n'):
     sys.stdout.write(sep.join(map(str, args)) + end)
 
+##################################################################################################
+# Helpers
+
+def debug(*x):
+    global testMode
+    if not testMode:
+        return
+    println(*x)
+
+def Timer(func: Callable):
+    def wrapper(*args, **kwargs):
+        now = datetime.now()
+        func(*args, **kwargs)
+        endnow = datetime.now()
+        print(f'Time taken {(endnow - now)}')
+
+    return wrapper
+
+##################################################################################################
+# Leetcode
+
+
+
 def leetcode():
     pass
 
+##################################################################################################
+# Solution
+
+
+# testMode = True
+testMode = False
 # inputTest = True
 inputTest = False
-def solve(test_case: int) -> None:
+def solve(testCase: int) -> None:
     pass
 
-    n = int(input())
-    s = input()
-    counter = {}
-    counter[0] = 1
-    ans = 0
-    pref = 0
-    for i in range(n):
-        if s[i] == 'a':
-            pref += 1
-        else:
-            pref -= 1
-        ans += counter.get(pref, 0)
-        counter[pref] = counter.get(pref, 0) + 1
-    print(ans)
 
 
-if __name__ == '__main__':
+
+# @Timer
+def main():
     t = 1
 
     if inputTest:
-        t = int(inputln())
+        t = int(input())
 
     for i in range(1, t + 1):
         solve(i)
 
     leetcode()
+
+if __name__ == '__main__':
+    main()

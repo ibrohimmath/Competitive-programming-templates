@@ -13,7 +13,6 @@ using ld = long double;
 namespace IO {
     void init(bool fast = true) {
         if (fast) {
-            // std::cin.tie(0)->sync_with_stdio(0);
             std::ios::sync_with_stdio(false);
             std::cin.tie(nullptr);
         }
