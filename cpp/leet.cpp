@@ -1,6 +1,6 @@
-#pragma GCC optimize ("Ofast")
-#pragma GCC optimize ("unroll-loops")
+#pragma GCC optimize("Ofast,unroll-loops")
 #include "bits/stdc++.h"
+
 using ll = long long;
 using ld = long double;
 #define all(x) (x).begin(), (x).end()

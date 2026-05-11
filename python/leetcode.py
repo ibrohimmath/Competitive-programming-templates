@@ -1,12 +1,12 @@
 import sys
 # sys.setrecursionlimit(1000000)
 
-from datetime import datetime
+from datetime import date, datetime
 from typing import Callable
-# from typing impor List
+from typing import List, Optional
 
-# from math import ceil, floor, trunc, log10, log2
-# from functools import lru_cache, reduce, cmp_to_key
+from math import ceil, floor, trunc, log10, log2
+from functools import lru_cache, reduce, cmp_to_key
 
 # from bisect import bisect_left, bisect_right
 # import heapq
@@ -37,24 +37,18 @@ def Timer(func: Callable):
     return wrapper
 
 ##################################################################################################
-# Solution
+# Leetcode
+
+
 
 # testMode = True
 testMode = False
-# inputTest = True
-inputTest = False
-def solve(testCase: int) -> None:
+def leetcode():
     pass
 
 # @Timer
 def main():
-    t = 1
-
-    if inputTest:
-        t = int(input())
-
-    for i in range(1, t + 1):
-        solve(i)
+    leetcode()
 
 if __name__ == '__main__':
     main()
